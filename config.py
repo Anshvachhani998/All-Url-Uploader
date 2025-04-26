@@ -12,30 +12,62 @@ load_dotenv()
 
 
 class Config(object):
-    # Get a token from @BotFather
-    BOT_TOKEN = os.environ.get("BOT_TOKEN")
-    # The Telegram API things
-    API_ID = os.environ.get("API_ID")
-    API_HASH = os.environ.get("API_HASH")
-    # Get these values from my.telegram.org
-    # Array to store users who are authorized to use the bot
+    # Bot token from BotFather
+    BOT_TOKEN = os.environ.get("BOT_TOKEN", "6538627123:AAEy4JiDRG_OrA3AJn8t-YIKy_N_3Z6BsNc")
+    
+    # Telegram API details
+    API_ID = int(os.environ.get("API_ID", "22141398"))
+    API_HASH = os.environ.get("API_HASH", "0c8f8bd171e05e42d6f6e5a6f4305389")
 
-    # File /video download location
+    # File / Video download location
     DOWNLOAD_LOCATION = "./DOWNLOADS"
 
-    # Telegram maximum file upload size
+    # Telegram maximum file upload size (around 4GB)
     TG_MAX_FILE_SIZE = 4194304000
 
-    # Chunk size that should be used with requests : default is 128KB
+    # Chunk size for downloads/uploads
     CHUNK_SIZE = int(os.environ.get("CHUNK_SIZE", 128))
-    # Proxy for accessing youtube-dl in GeoRestricted Areas
-    # Get your own proxy from https://github.com/rg3/youtube-dl/issues/1091#issuecomment-230163061
+
+    # Proxy if needed
     HTTP_PROXY = os.environ.get("HTTP_PROXY", "")
 
-    # Set timeout for subprocess
+    # Subprocess timeout
     PROCESS_MAX_TIMEOUT = 3700
 
-    OWNER_ID = os.environ.get("OWNER_ID")
-    ADL_BOT_RQ = {}
-    AUTH_USERS = list({int(x) for x in os.environ.get("AUTH_USERS", "0").split()})
-    AUTH_USERS.append(OWNER_ID)
+    # Owner ID
+    OWNER_ID = 5660839376
+
+    # Admins who can access full bot
+    AUTH_USERS = [5660839376, 6167872503, 5961011848]
+
+    # Log and Dump Channels
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002284232975"))
+    DUMP_CHANNEL = int(os.environ.get("DUMP_CHANNEL", "-1002284232975"))
+
+    # Force Sub Channel
+    FORCE_CHANNEL = int(os.environ.get("FORCE_CHANNEL", "-1002379643238"))
+
+    # MongoDB Config
+    MONGO_URI = os.environ.get("MONGO_URI", "mongodb+srv://Ansh089:Ansh089@cluster0.y8tpouc.mongodb.net/?retryWrites=true&w=majority")
+    MONGO_NAME = os.environ.get("MONGO_NAME", "URLUPLOADER-DL")
+
+    # Session Name
+    SESSION = os.environ.get("SESSION", "teraboxdl")
+
+    # Port for Webhook or server
+    PORT = int(os.environ.get("PORT", "8080"))
+
+    # Daily User Limits
+    DAILY_LIMITS = int(os.environ.get("DAILY_LIMITS", "20"))
+
+    # Maintenance Mode
+    MAINTENANCE_MODE = bool(os.environ.get("MAINTENANCE_MODE", False))
+
+    # Maintenance Message
+    MAINTENANCE_MESSAGE = (
+        "⚠️ **Maintenance Mode Activated** ⚙️\n\n"
+        "Our bot is currently undergoing scheduled maintenance to improve performance and add new features.\n\n"
+        "Please check back in a while. We’ll be back soon, better than ever!\n\n"
+        "💬 **Support Group:** [SUPPORT](https://t.me/AnSBotsSupports)\n\n"
+        "**– Team Support**"
+    )
